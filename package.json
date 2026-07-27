@@ -8,9 +8,9 @@
   "private": false,
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder",
-    "build:win": "electron-builder --win --x64",
-    "build:mac": "electron-builder --mac --x64 --arm64",
+    "build": "electron-builder --publish never",
+    "build:win": "electron-builder --win --x64 --publish never",
+    "build:mac": "electron-builder --mac --x64 --arm64 --publish never",
     "lint": "node scripts/validate-electron.js"
   },
   "build": {

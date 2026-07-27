@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: "20"
           cache: "npm"
-      - run: npm install
+      - run: npm ci
       - run: npm run lint
       - run: npm run build:win
         env:
@@ -39,7 +39,7 @@ jobs:
         with:
           node-version: "20"
           cache: "npm"
-      - run: npm install
+      - run: npm ci
       - run: npm run lint
       - run: npm run build:mac
         env:
