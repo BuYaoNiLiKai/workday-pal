@@ -3,6 +3,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const APP_NAME = "Workday Pal";
+const APP_ICON = path.join(__dirname, "..", "assets", "icons", process.platform === "win32" ? "icon.ico" : "icon.png");
 
 const defaultConfig = {
   isConfigured: false,
@@ -63,6 +64,7 @@ function createWindow() {
     alwaysOnTop: true,
     skipTaskbar: false,
     title: APP_NAME,
+    icon: APP_ICON,
     backgroundColor: "#f7f3ec",
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
@@ -78,6 +80,7 @@ function createWindow() {
 
 app.whenReady().then(() => {
   app.setName(APP_NAME);
+  app.setAppUserModelId("com.workdaypal.app");
   createWindow();
 
   app.on("activate", () => {
@@ -137,6 +140,7 @@ ipcMain.handle("notify:water", (_event, body) => {
   if (!Notification.isSupported()) return;
   new Notification({
     title: "该喝水啦",
+    icon: APP_ICON,
     body: body || "起来活动一下，补充一点水分。"
   }).show();
 });

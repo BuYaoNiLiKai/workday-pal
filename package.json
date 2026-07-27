@@ -13,9 +13,10 @@
     "build:mac": "electron-builder --mac --x64 --arm64",
     "lint": "node scripts/validate-electron.js"
   },
-  "build": {
+    "build": {
     "appId": "com.workdaypal.app",
     "productName": "Workday Pal",
+    "icon": "assets/icons/icon",
     "directories": {
       "output": "dist"
     },
@@ -27,6 +28,7 @@
     ],
     "asar": true,
     "win": {
+      "icon": "assets/icons/icon.ico",
       "signAndEditExecutable": false,
       "target": [
         {
@@ -44,6 +46,7 @@
       ]
     },
     "mac": {
+      "icon": "assets/icons/icon.icns",
       "category": "public.app-category.productivity",
       "target": [
         {
