@@ -13,7 +13,7 @@
     "build:mac": "electron-builder --mac --x64 --arm64",
     "lint": "node scripts/validate-electron.js"
   },
-    "build": {
+  "build": {
     "appId": "com.workdaypal.app",
     "productName": "Workday Pal",
     "icon": "assets/icons/icon",
@@ -44,6 +44,14 @@
           ]
         }
       ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Workday Pal"
     },
     "mac": {
       "icon": "assets/icons/icon.icns",
