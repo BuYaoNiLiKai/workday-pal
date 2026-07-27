@@ -29,7 +29,6 @@
     "asar": true,
     "win": {
       "icon": "assets/icons/icon.ico",
-      "signAndEditExecutable": false,
       "target": [
         {
           "target": "nsis",

@@ -465,7 +465,10 @@ function bindEvents() {
   $("scaleInput").addEventListener("input", (event) => {
     const scalePercent = Number(event.target.value);
     applyUiScale(scalePercent);
-    window.workdayPal.setSizeScale(scalePercent);
+  });
+  $("scaleInput").addEventListener("change", async (event) => {
+    const scalePercent = Number(event.target.value);
+    await window.workdayPal.setSizeScale(scalePercent);
   });
 }
 

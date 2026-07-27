@@ -3,7 +3,12 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const APP_NAME = "Workday Pal";
+const APP_ID = "com.workdaypal.app";
 const APP_ICON = path.join(__dirname, "..", "assets", "icons", process.platform === "win32" ? "icon.ico" : "icon.png");
+
+if (process.platform === "win32") {
+  app.setAppUserModelId(APP_ID);
+}
 
 const defaultConfig = {
   isConfigured: false,
@@ -74,13 +79,13 @@ function createWindow() {
   });
 
   mainWindow.setMenuBarVisibility(false);
+  mainWindow.setIcon(APP_ICON);
   mainWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
   mainWindow.loadFile(path.join(__dirname, "..", "app", "index.html"));
 }
 
 app.whenReady().then(() => {
   app.setName(APP_NAME);
-  app.setAppUserModelId("com.workdaypal.app");
   createWindow();
 
   app.on("activate", () => {
