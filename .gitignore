@@ -1,0 +1,17 @@
+work-timer-config.json
+bin/
+obj/
+node_modules/
+npm-debug.log*
+*.log
+*.exe
+custom-character/
+tmp/
+.dotnet/
+.packages/
+publish/
+dist/
+release/
+.DS_Store
+*.user
+*.suo

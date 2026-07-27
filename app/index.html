@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workday Pal</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="titlebar">
+        <div>
+          <strong>下班搭子</strong>
+          <span id="todayLabel">今天</span>
+        </div>
+        <nav class="window-actions">
+          <button id="settingsButton" title="设置">⚙</button>
+          <button id="dressButton" title="装扮">✦</button>
+          <button id="minimizeButton" title="最小化">─</button>
+          <button id="closeButton" title="关闭">×</button>
+        </nav>
+      </header>
+
+      <section class="content">
+        <aside class="pet-stage">
+          <img id="characterImage" alt="桌面搭子" />
+          <div id="characterName" class="pet-name">橘子</div>
+        </aside>
+
+        <section class="timer-panel">
+          <div class="status-row">
+            <span id="statusLabel">准备中</span>
+            <span id="overtimeBadge">加班中</span>
+          </div>
+          <div id="countdownLabel" class="countdown">00:00:00</div>
+          <div id="captionLabel" class="caption">正在整理今天的节奏</div>
+
+          <div class="progress-wrap">
+            <div class="progress-track">
+              <div id="progressFill"></div>
+            </div>
+            <span id="progressLabel">0%</span>
+          </div>
+
+          <div class="meta-grid">
+            <div>
+              <span>日程</span>
+              <strong id="scheduleLabel">08:15 - 18:00</strong>
+            </div>
+            <div>
+              <span>喝水</span>
+              <strong id="waterHintLabel">45 分钟后</strong>
+            </div>
+          </div>
+
+          <div class="command-row">
+            <button id="overtimeButton" class="primary">加班</button>
+            <button id="quickWaterButton">我喝水了</button>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <div id="modalLayer" class="modal-layer hidden">
+      <section id="settingsModal" class="modal hidden">
+        <header>
+          <div>
+            <p id="settingsEyebrow">设置</p>
+            <h1 id="settingsTitle">调整工作时间</h1>
+          </div>
+        </header>
+        <div class="form-grid">
+          <label>上班时间<input id="workStartInput" type="time" /></label>
+          <label>午休开始<input id="breakStartInput" type="time" /></label>
+          <label>午休结束<input id="breakEndInput" type="time" /></label>
+          <label>下班时间<input id="workEndInput" type="time" /></label>
+          <label>喝水间隔<input id="waterMinutesInput" type="number" min="15" max="240" step="5" /></label>
+          <label>界面大小<input id="scaleInput" type="range" min="80" max="150" step="5" /></label>
+        </div>
+        <label class="toggle-row">
+          <input id="waterEnabledInput" type="checkbox" />
+          <span>开启喝水提醒</span>
+        </label>
+        <p id="settingsError" class="error"></p>
+        <footer>
+          <button id="settingsCancelButton">取消</button>
+          <button id="settingsSaveButton" class="primary">确定</button>
+        </footer>
+      </section>
+
+      <section id="dressModal" class="modal wide hidden">
+        <header>
+          <div>
+            <p>装扮</p>
+            <h1>选择每天陪你的搭子</h1>
+          </div>
+        </header>
+        <label class="name-field">名字<input id="nameInput" maxlength="12" /></label>
+        <div id="characterGrid" class="card-grid"></div>
+        <h2>动作预览</h2>
+        <div id="actionGrid" class="action-grid"></div>
+        <p id="dressError" class="error"></p>
+        <footer>
+          <button id="dressCancelButton">取消</button>
+          <button id="dressSaveButton" class="primary">确定</button>
+        </footer>
+      </section>
+
+      <section id="overtimeModal" class="modal small hidden">
+        <header>
+          <div>
+            <p>加班</p>
+            <h1>今晚预计几点收工？</h1>
+          </div>
+        </header>
+        <label>加班结束<input id="overtimeEndInput" type="time" /></label>
+        <p id="overtimeError" class="error"></p>
+        <footer>
+          <button id="overtimeCancelButton">取消</button>
+          <button id="overtimeSaveButton" class="primary">确定</button>
+        </footer>
+      </section>
+    </div>
+
+    <script src="./renderer.js"></script>
+  </body>
+</html>
