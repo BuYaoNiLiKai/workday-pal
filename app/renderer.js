@@ -48,6 +48,11 @@ let lastWaterNotificationAt = 0;
 
 const $ = (id) => document.getElementById(id);
 
+function applyUiScale(scalePercent) {
+  const scale = Math.min(1.5, Math.max(0.8, Number(scalePercent) / 100));
+  document.documentElement.style.setProperty("--ui-scale", String(scale));
+}
+
 const elements = {
   todayLabel: $("todayLabel"),
   characterImage: $("characterImage"),
@@ -311,6 +316,7 @@ async function saveSettings() {
     return;
   }
   config = await window.workdayPal.saveConfig(next);
+  applyUiScale(config.uiScalePercent);
   await window.workdayPal.setSizeScale(config.uiScalePercent);
   firstRunSettings = false;
   closeModals();
@@ -457,13 +463,16 @@ function bindEvents() {
     await refresh();
   });
   $("scaleInput").addEventListener("input", (event) => {
-    window.workdayPal.setSizeScale(Number(event.target.value));
+    const scalePercent = Number(event.target.value);
+    applyUiScale(scalePercent);
+    window.workdayPal.setSizeScale(scalePercent);
   });
 }
 
 async function boot() {
   bindEvents();
   config = { ...defaultConfig, ...(await window.workdayPal.getConfig()) };
+  applyUiScale(config.uiScalePercent);
   await window.workdayPal.setSizeScale(config.uiScalePercent);
   await refresh();
   setInterval(refresh, 1000);

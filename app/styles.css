@@ -1,6 +1,9 @@
 :root {
   color-scheme: light;
   font-family: "Microsoft YaHei UI", "PingFang SC", "Segoe UI", sans-serif;
+  --ui-scale: 1;
+  --app-width: 500px;
+  --app-height: 286px;
   --ink: #2d2a26;
   --muted: #746d65;
   --line: #e7ded2;
@@ -20,7 +23,9 @@
 
 body {
   margin: 0;
-  min-height: 100vh;
+  width: calc(var(--app-width) * var(--ui-scale));
+  height: calc(var(--app-height) * var(--ui-scale));
+  min-height: calc(var(--app-height) * var(--ui-scale));
   overflow: hidden;
   color: var(--ink);
   background: #f3eadc;
@@ -54,8 +59,8 @@ button.primary {
 }
 
 .shell {
-  width: 100vw;
-  height: 100vh;
+  width: var(--app-width);
+  height: var(--app-height);
   background:
     linear-gradient(120deg, rgba(223, 234, 221, 0.72), transparent 42%),
     linear-gradient(180deg, #fffaf2 0%, #f7efe3 100%);
@@ -63,6 +68,8 @@ button.primary {
   border-radius: 12px;
   box-shadow: var(--shadow);
   overflow: hidden;
+  transform: scale(var(--ui-scale));
+  transform-origin: left top;
 }
 
 .titlebar {
@@ -98,7 +105,7 @@ button.primary {
 }
 
 .content {
-  height: calc(100vh - 42px);
+  height: calc(var(--app-height) - 42px);
   display: grid;
   grid-template-columns: minmax(128px, 34%) 1fr;
   gap: 12px;
@@ -246,11 +253,16 @@ button.primary {
 
 .modal-layer {
   position: fixed;
-  inset: 0;
+  left: 0;
+  top: 0;
+  width: var(--app-width);
+  height: var(--app-height);
   display: grid;
   place-items: center;
   padding: 14px;
   background: rgba(44, 38, 31, 0.28);
+  transform: scale(var(--ui-scale));
+  transform-origin: left top;
 }
 
 .hidden {
@@ -258,8 +270,8 @@ button.primary {
 }
 
 .modal {
-  width: min(440px, calc(100vw - 28px));
-  max-height: calc(100vh - 28px);
+  width: min(440px, calc(var(--app-width) - 28px));
+  max-height: calc(var(--app-height) - 28px);
   overflow: auto;
   padding: 18px;
   border: 1px solid rgba(231, 222, 210, 0.9);
@@ -269,11 +281,11 @@ button.primary {
 }
 
 .modal.wide {
-  width: min(720px, calc(100vw - 28px));
+  width: min(720px, calc(var(--app-width) - 28px));
 }
 
 .modal.small {
-  width: min(360px, calc(100vw - 28px));
+  width: min(360px, calc(var(--app-width) - 28px));
 }
 
 .modal header {

@@ -12,7 +12,7 @@ Workday Pal 是一个基于 **Electron** 的跨平台桌面悬浮应用。它不
 - **首次启动引导**：第一次打开先设置上班、午休和下班时间
 - **自由编辑日程**：每个人的工作时间不同，设置后会自动保存
 - **真实工作进度**：进度条只计算工作时间，不把午休算进去
-- **桌面搭子**：内置小猫、小狗、兔子、熊猫、小男孩、小女孩
+- **桌面搭子**：内置橘子、元宝、糯米、团团、小宇、小满，也支持自定义名字
 - **动作状态**：准备、工作、喝水、玩手机、午睡、加班、下班
 - **喝水提醒**：主界面显示下次提醒时间，到点后切换喝水动作
 - **加班模式**：支持设置今日加班结束时间，也可以提前结束
@@ -24,9 +24,9 @@ Workday Pal 是一个基于 **Electron** 的跨平台桌面悬浮应用。它不
 
 内置搭子示例：
 
-| 小猫 | 小狗 | 兔子 | 熊猫 | 小男孩 | 小女孩 |
+| 橘子 | 元宝 | 糯米 | 团团 | 小宇 | 小满 |
 | --- | --- | --- | --- | --- | --- |
-| ![cat](assets/characters/cat/working.png) | ![dog](assets/characters/dog/working.png) | ![rabbit](assets/characters/rabbit/working.png) | ![panda](assets/characters/panda/working.png) | ![boy](assets/characters/boy/working.png) | ![girl](assets/characters/girl/working.png) |
+| ![橘子](assets/characters/cat/working.png) | ![元宝](assets/characters/dog/working.png) | ![糯米](assets/characters/rabbit/working.png) | ![团团](assets/characters/panda/working.png) | ![小宇](assets/characters/boy/working.png) | ![小满](assets/characters/girl/working.png) |
 
 动作示例：
 
