@@ -63,7 +63,6 @@ const elements = {
   captionLabel: $("captionLabel"),
   progressFill: $("progressFill"),
   progressLabel: $("progressLabel"),
-  scheduleLabel: $("scheduleLabel"),
   waterHintLabel: $("waterHintLabel"),
   modalLayer: $("modalLayer"),
   settingsModal: $("settingsModal"),
@@ -250,7 +249,6 @@ async function refresh() {
   elements.captionLabel.textContent = view.caption;
   elements.progressFill.style.width = `${progress}%`;
   elements.progressLabel.textContent = `${progress}%`;
-  elements.scheduleLabel.textContent = `${config.workStart} 上班 · ${config.breakStart}-${config.breakEnd} 午休 · ${config.workEnd} 下班`;
   elements.waterHintLabel.textContent = getWaterHint(now);
   elements.characterImage.src = assetSrc(config.character, view.state);
   $("overtimeButton").textContent = isOvertimeToday(now) ? "结束加班" : "加班";
@@ -280,6 +278,8 @@ function openSettings(firstRun = false) {
   $("waterEnabledInput").checked = config.waterReminderEnabled;
   $("waterMinutesInput").value = config.waterReminderMinutes;
   $("scaleInput").value = config.uiScalePercent;
+  $("scaleValue").textContent = `${config.uiScalePercent}%`;
+  $("waterMinutesInput").disabled = !config.waterReminderEnabled;
   $("settingsError").textContent = "";
   showModal(elements.settingsModal);
 }
@@ -464,11 +464,15 @@ function bindEvents() {
   });
   $("scaleInput").addEventListener("input", (event) => {
     const scalePercent = Number(event.target.value);
+    $("scaleValue").textContent = `${scalePercent}%`;
     applyUiScale(scalePercent);
   });
   $("scaleInput").addEventListener("change", async (event) => {
     const scalePercent = Number(event.target.value);
     await window.workdayPal.setSizeScale(scalePercent);
+  });
+  $("waterEnabledInput").addEventListener("change", (event) => {
+    $("waterMinutesInput").disabled = !event.target.checked;
   });
 }
 
