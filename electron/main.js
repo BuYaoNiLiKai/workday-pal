@@ -1,10 +1,11 @@
-const { app, BrowserWindow, dialog, ipcMain, Notification } = require("electron");
+const { app, BrowserWindow, dialog, ipcMain, nativeImage, Notification } = require("electron");
 const fs = require("node:fs");
 const path = require("node:path");
 
 const APP_NAME = "Workday Pal";
 const APP_ID = "com.workdaypal.app";
 const APP_ICON = path.join(__dirname, "..", "assets", "icons", process.platform === "win32" ? "icon.ico" : "icon.png");
+const appIcon = nativeImage.createFromPath(APP_ICON);
 
 if (process.platform === "win32") {
   app.setAppUserModelId(APP_ID);
@@ -63,13 +64,14 @@ function createWindow() {
     height: 286,
     minWidth: 400,
     minHeight: 228,
+    show: false,
     frame: false,
     transparent: false,
     resizable: true,
     alwaysOnTop: true,
     skipTaskbar: false,
     title: APP_NAME,
-    icon: APP_ICON,
+    icon: appIcon,
     backgroundColor: "#f7f3ec",
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
@@ -79,13 +81,20 @@ function createWindow() {
   });
 
   mainWindow.setMenuBarVisibility(false);
-  mainWindow.setIcon(APP_ICON);
+  mainWindow.setIcon(appIcon);
   mainWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
+  mainWindow.once("ready-to-show", () => {
+    mainWindow.setIcon(appIcon);
+    mainWindow.show();
+  });
   mainWindow.loadFile(path.join(__dirname, "..", "app", "index.html"));
 }
 
 app.whenReady().then(() => {
   app.setName(APP_NAME);
+  if (process.platform === "win32") {
+    app.setAppUserModelId(APP_ID);
+  }
   createWindow();
 
   app.on("activate", () => {
@@ -145,7 +154,7 @@ ipcMain.handle("notify:water", (_event, body) => {
   if (!Notification.isSupported()) return;
   new Notification({
     title: "该喝水啦",
-    icon: APP_ICON,
+    icon: appIcon,
     body: body || "起来活动一下，补充一点水分。"
   }).show();
 });

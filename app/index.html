@@ -15,6 +15,8 @@
           <span id="todayLabel">今天</span>
         </div>
         <nav class="window-actions" aria-label="窗口操作">
+          <button id="quickWaterButton" class="water-action" title="我喝水了" aria-label="我喝水了">●</button>
+          <button id="overtimeButton" class="overtime-action" title="设置加班" aria-label="设置加班">◷<span id="overtimeBadge"></span></button>
           <button id="settingsButton" title="设置" aria-label="设置">⚙</button>
           <button id="dressButton" title="装扮" aria-label="装扮">✦</button>
           <span class="action-divider"></span>
@@ -31,32 +33,14 @@
             <span id="characterName" class="pet-name">橘子</span>
             <span class="online-dot" title="陪伴中"></span>
           </div>
-        </section>
-
-        <section class="timer-panel">
-          <div class="status-row">
-            <span id="statusLabel">准备中</span>
-            <span id="overtimeBadge">加班中</span>
-          </div>
-          <div id="countdownLabel" class="countdown">00:00:00</div>
-          <div id="captionLabel" class="caption">正在整理今天的节奏</div>
-
-          <div class="progress-wrap">
+          <div class="progress-dock">
+            <div class="progress-copy">
+              <strong id="statusLabel">准备中</strong>
+              <span id="progressLabel">0%</span>
+            </div>
             <div class="progress-track" aria-label="今日工作进度">
               <div id="progressFill"></div>
             </div>
-            <span id="progressLabel">0%</span>
-          </div>
-
-          <div class="water-strip">
-            <span class="water-icon">●</span>
-            <span>喝水提醒</span>
-            <strong id="waterHintLabel">45 分钟后</strong>
-          </div>
-
-          <div class="command-row">
-            <button id="overtimeButton" class="primary">加班</button>
-            <button id="quickWaterButton">我喝水了</button>
           </div>
         </section>
       </section>

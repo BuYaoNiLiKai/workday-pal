@@ -16,6 +16,7 @@
   "build": {
     "appId": "com.workdaypal.app",
     "productName": "Workday Pal",
+    "executableName": "WorkdayPal",
     "icon": "assets/icons/icon",
     "directories": {
       "output": "dist"
@@ -48,6 +49,9 @@
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
       "perMachine": false,
+      "installerIcon": "assets/icons/icon.ico",
+      "uninstallerIcon": "assets/icons/icon.ico",
+      "installerHeaderIcon": "assets/icons/icon.ico",
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
       "shortcutName": "Workday Pal"

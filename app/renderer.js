@@ -59,11 +59,8 @@ const elements = {
   characterName: $("characterName"),
   statusLabel: $("statusLabel"),
   overtimeBadge: $("overtimeBadge"),
-  countdownLabel: $("countdownLabel"),
-  captionLabel: $("captionLabel"),
   progressFill: $("progressFill"),
   progressLabel: $("progressLabel"),
-  waterHintLabel: $("waterHintLabel"),
   modalLayer: $("modalLayer"),
   settingsModal: $("settingsModal"),
   dressModal: $("dressModal"),
@@ -244,14 +241,12 @@ async function refresh() {
   elements.todayLabel.textContent = `${now.getMonth() + 1}月${now.getDate()}日`;
   elements.characterName.textContent = config.characterName;
   elements.statusLabel.textContent = view.status;
-  elements.overtimeBadge.style.display = view.state === "overtime" ? "inline-block" : "none";
-  elements.countdownLabel.textContent = formatDuration(view.remainingMs);
-  elements.captionLabel.textContent = view.caption;
+  elements.overtimeBadge.style.display = view.state === "overtime" ? "block" : "none";
   elements.progressFill.style.width = `${progress}%`;
   elements.progressLabel.textContent = `${progress}%`;
-  elements.waterHintLabel.textContent = getWaterHint(now);
   elements.characterImage.src = assetSrc(config.character, view.state);
-  $("overtimeButton").textContent = isOvertimeToday(now) ? "结束加班" : "加班";
+  $("overtimeButton").title = isOvertimeToday(now) ? "结束加班" : "设置加班";
+  $("overtimeButton").setAttribute("aria-label", $("overtimeButton").title);
 }
 
 function showModal(modal) {

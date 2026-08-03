@@ -139,6 +139,7 @@ button.primary:hover {
 }
 
 .window-actions button {
+  position: relative;
   width: 27px;
   min-height: 26px;
   padding: 0;
@@ -147,6 +148,16 @@ button.primary:hover {
   background: transparent;
   font-size: 14px;
   line-height: 1;
+}
+
+.window-actions .water-action {
+  color: var(--blue);
+  font-size: 8px;
+}
+
+.window-actions .overtime-action {
+  color: var(--coral);
+  font-size: 15px;
 }
 
 .window-actions button:hover {
@@ -169,24 +180,22 @@ button.primary:hover {
 
 .content {
   height: calc(var(--app-height) - 42px);
-  padding: 10px 13px 13px;
-  display: grid;
-  grid-template-columns: 222px minmax(0, 1fr);
-  gap: 17px;
+  padding: 8px 13px 13px;
 }
 
 .pet-stage {
   position: relative;
   min-width: 0;
   overflow: hidden;
+  width: 100%;
+  height: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   border-radius: 8px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.68) 0 67%, rgba(235, 223, 205, 0.56) 67% 68%, rgba(244, 235, 222, 0.74) 68% 100%),
-    repeating-linear-gradient(90deg, transparent 0 24px, rgba(57, 112, 90, 0.04) 24px 25px);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.72) 0 72%, rgba(231, 220, 203, 0.58) 72% 73%, rgba(244, 235, 222, 0.8) 73% 100%),
+    repeating-linear-gradient(90deg, transparent 0 32px, rgba(57, 112, 90, 0.035) 32px 33px);
   border: 1px solid rgba(229, 223, 213, 0.75);
   box-shadow: var(--soft-shadow);
 }
@@ -195,7 +204,7 @@ button.primary:hover {
   position: absolute;
   left: 18px;
   right: 18px;
-  bottom: 38px;
+  bottom: 50px;
   height: 1px;
   background: rgba(112, 91, 65, 0.11);
 }
@@ -203,8 +212,9 @@ button.primary:hover {
 .pet-stage img {
   position: relative;
   z-index: 1;
-  width: min(92%, 188px);
-  height: 184px;
+  width: min(86%, 218px);
+  height: 190px;
+  margin-bottom: 28px;
   object-fit: contain;
   image-rendering: auto;
   filter: drop-shadow(0 7px 7px rgba(52, 43, 32, 0.1));
@@ -215,7 +225,7 @@ button.primary:hover {
   position: absolute;
   z-index: 2;
   left: 50%;
-  bottom: 9px;
+  bottom: 49px;
   max-width: calc(100% - 28px);
   min-height: 27px;
   padding: 4px 9px 4px 11px;
@@ -247,56 +257,48 @@ button.primary:hover {
   box-shadow: 0 0 0 3px rgba(98, 166, 111, 0.13);
 }
 
-.timer-panel {
-  min-width: 0;
-  padding: 5px 1px 2px 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 7px;
-}
-
-.status-row,
-.progress-wrap,
-.command-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
 #statusLabel {
-  color: var(--green);
-  font-size: 15px;
+  overflow: hidden;
+  color: var(--green-dark);
+  font-size: 11px;
   font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 #overtimeBadge {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 5px;
+  height: 5px;
   display: none;
-  padding: 2px 7px;
-  border-radius: 999px;
-  color: #fff;
+  border: 1px solid #fff8f2;
+  border-radius: 50%;
   background: var(--coral);
-  font-size: 10px;
-  font-weight: 700;
 }
 
-.countdown {
-  font-family: "Segoe UI", "DIN Alternate", sans-serif;
-  color: #263c32;
-  font-size: 28px;
-  font-weight: 780;
-  font-variant-numeric: tabular-nums;
-  line-height: 1;
+.progress-dock {
+  position: absolute;
+  z-index: 3;
+  left: 12px;
+  right: 12px;
+  bottom: 8px;
+  min-height: 36px;
+  padding: 6px 9px 7px;
+  border: 1px solid rgba(57, 112, 90, 0.13);
+  border-radius: 8px;
+  background: rgba(255, 253, 249, 0.94);
+  box-shadow: 0 5px 15px rgba(57, 49, 39, 0.09);
+  backdrop-filter: blur(5px);
 }
 
-.caption {
-  min-height: 17px;
-  overflow: hidden;
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 600;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.progress-copy {
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .progress-track {
@@ -317,52 +319,12 @@ button.primary:hover {
 }
 
 #progressLabel {
-  width: 34px;
+  flex: 0 0 auto;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 10px;
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
   text-align: right;
-}
-
-.water-strip {
-  min-width: 0;
-  min-height: 34px;
-  padding: 0 9px;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  border: 1px solid rgba(80, 133, 165, 0.18);
-  border-radius: 7px;
-  color: #52626b;
-  background: rgba(233, 244, 248, 0.72);
-  font-size: 11px;
-  font-weight: 700;
-}
-
-.water-icon {
-  color: var(--blue);
-  font-size: 8px;
-}
-
-.water-strip strong {
-  min-width: 0;
-  margin-left: auto;
-  overflow: hidden;
-  color: #366b88;
-  font-size: 11px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.command-row {
-  margin-top: 1px;
-}
-
-.command-row button {
-  min-height: 31px;
-  flex: 1;
-  font-size: 11px;
-  font-weight: 800;
 }
 
 .modal-layer {
